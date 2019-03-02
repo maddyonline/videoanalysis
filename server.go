@@ -4,9 +4,11 @@ import (
 	"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 	"path"
 	"path/filepath"
@@ -82,6 +84,8 @@ type VideoData struct {
 	Thumbnail   *string        `json:"thumbnail,omitempty"`
 }
 
+var count int
+
 func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 	var thumbnail *string
 	// sent the headers for Server Side Events
@@ -122,6 +126,21 @@ func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "can not decode the image", http.StatusInternalServerError)
 			return
 		}
+		filename := fmt.Sprintf("server_img_%d.jpeg", count)
+		count++
+		//open a file for writing
+		file, err := os.Create(filename)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer file.Close()
+
+		// Use io.Copy to just dump the response body to the file. This supports huge files
+		_, err = io.Copy(file, bytes.NewReader(imgDec))
+		if err != nil {
+			log.Printf("%s", err)
+		}
+
 		log.Printf("Here: %d", frame)
 		frame++
 		faces, err := s.facebox.Check(bytes.NewReader(imgDec))
