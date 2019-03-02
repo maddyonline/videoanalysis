@@ -12,7 +12,8 @@ import (
 )
 
 var (
-	addr = flag.String("addr", ":8081", "address")
+	addr   = flag.String("addr", ":8081", "address")
+	videos = flag.String("videos", "./videos", "videos")
 )
 
 func main() {
@@ -28,7 +29,7 @@ func main() {
 
 	fmt.Println("Go to:", *addr+"...")
 
-	srv := NewServer("./assets", "./videos", facebox)
+	srv := NewServer("./assets", *videos, facebox)
 	if err := http.ListenAndServe(*addr, srv); err != nil {
 		log.Fatalln(err)
 	}
