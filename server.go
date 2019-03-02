@@ -102,6 +102,7 @@ func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 	cmd.Start()
 
 	total := 0
+	frame := 0
 	dec := json.NewDecoder(stdout)
 	for {
 		var f Frame
@@ -121,7 +122,13 @@ func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "can not decode the image", http.StatusInternalServerError)
 			return
 		}
+		log.Printf("Here: %d", frame)
+		frame++
 		faces, err := s.facebox.Check(bytes.NewReader(imgDec))
+		log.Printf("Faces: %v", faces)
+		if err != nil {
+			log.Printf("error: %v", err)
+		}
 		total = f.Total
 
 		thumbnail = nil

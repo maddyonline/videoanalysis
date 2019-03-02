@@ -14,6 +14,12 @@ Check out the blog post https://blog.machinebox.io/processing-video-to-do-face-r
 * Python 2 and OpenCV
 * Facebox
 
+Updating the respository to work with a `fake` Facebox. See `github.com/maddyonline/facebox`.
+
+Notes:
+* Need a python environment with installed libraries for videoanalysis to work.
+
+
 
 ## Video Samples
 

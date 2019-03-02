@@ -32,6 +32,7 @@ func (items *Items) List() []Item {
 }
 
 func LoadItemsFromPath(dir string) *Items {
+	log.Printf("directory: %s", dir)
 	items := Items{data: map[string]Item{}}
 	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {

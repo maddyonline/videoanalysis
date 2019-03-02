@@ -7,8 +7,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/machinebox/sdk-go/boxutil"
 	"github.com/machinebox/sdk-go/facebox"
-	"github.com/machinebox/sdk-go/x/boxutil"
 )
 
 var (
