@@ -7,14 +7,19 @@ import argparse
 import base64
 import simplejson as json
 
-def videoStreamer(path, width=800, height=None, skip=None, js=False):
+from pose_detect import detect
+
+def videoStreamer(path, width=800, height=None, skip=None, js=False, init_skip=525):
     stream = cv2.VideoCapture(path)
     frames = int(stream.get(cv2.CAP_PROP_FRAME_COUNT))        
     FPS = stream.get(cv2.CAP_PROP_FPS)
         
     if skip == None:
         skip = int(FPS)
+        # skip = 50
     frame = None
+    for i in range(init_skip):
+        stream.grab()
     while True:        
         for i in range(skip):
             stream.grab()
@@ -24,11 +29,14 @@ def videoStreamer(path, width=800, height=None, skip=None, js=False):
         frame = imutils.resize(frame, width=width, height=height)
         f = stream.get(cv2.CAP_PROP_POS_FRAMES)
         t = stream.get(cv2.CAP_PROP_POS_MSEC)
+
+        frame, _ = detect(frame)
+
         res = bytearray(cv2.imencode(".jpeg", frame)[1])
         size = str(len(res))
 
         if js:            
-            obj = {"frame": int(f), "millis": int(t), "total": frames, "image": base64.b64encode(res)}
+            obj = {"frame": int(f), "millis": int(t), "total": frames + int(FPS), "image": base64.b64encode(res)}
             sys.stdout.write(json.dumps(obj))
             sys.stdout.write("\n")
         else:        

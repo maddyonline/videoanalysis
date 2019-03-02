@@ -126,7 +126,7 @@ func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "can not decode the image", http.StatusInternalServerError)
 			return
 		}
-		filename := fmt.Sprintf("unversioned/server_img_%d.jpeg", count)
+		filename := fmt.Sprintf("unversioned/server-images/server_img_%d.jpeg", count)
 		count++
 		//open a file for writing
 		file, err := os.Create(filename)
@@ -150,7 +150,7 @@ func (s *Server) check(w http.ResponseWriter, r *http.Request) {
 		}
 		total = f.Total
 
-		thumbnail = nil
+		thumbnail = &f.Image
 		for _, face := range faces {
 			if face.Matched {
 				thumbnail = &f.Image

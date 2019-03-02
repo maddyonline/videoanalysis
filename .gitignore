@@ -15,3 +15,5 @@
 videos/*.mov
 unversioned/
 .DS_Store
+__pycache__/
+pose/

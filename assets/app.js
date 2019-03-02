@@ -54,6 +54,7 @@ $(function(){
 		es.onmessage = function(e){
 			
 			var obj = JSON.parse(e.data)
+			console.log(obj)
 			if (obj.thumbnail) {
 				frameData[obj.frame] = obj
 				frames.append(
