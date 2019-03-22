@@ -1,27 +1,26 @@
-# Video Analysis
+# Setup
+```sh
+conda create --name va-2 --file spec-file.txt
+conda activate va-2
+pip install -r myreqs.txt
+```
 
-With this little app you can process video frames with Go, using a little Python script, allowing video pipelines and workflows. Here we implement a Face Recognition pipeline using [Facebox](https://machinebox.io/docs/facebox).
+Verify the following command works.
 
+```sh
+python video.py --path unversioned/videos/arm-swing-youtube.mpg
+```
 
-Check out the blog post https://blog.machinebox.io/processing-video-to-do-face-recognition-with-go-and-python-298275a26095
+Start `facebox` and then start `videoanalysis` golang applications.
 
-[![Video Analysis by Machinebox](video.png)](https://vimeo.com/243123250)
-
-
-## Requirements
-
-* Go
-* Python 2 and OpenCV
-* Facebox
-
-Updating the respository to work with a `fake` Facebox. See `github.com/maddyonline/facebox`.
-
-Notes:
-* Need a python environment with installed libraries for videoanalysis to work.
+```sh
+./videoanalysis -videos unversioned/videos
+```
 
 
+# Acknowledgements
 
-## Video Samples
+Check out the blog post https://blog.machinebox.io/processing-video-to-do-face-recognition-with-go-and-python-298275a26095 for the original source code.
 
-Leave your videos under `./videos` and the app will load the videos on the startup
+
 
