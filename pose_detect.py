@@ -126,7 +126,7 @@ if __name__ == "__main__":
     plt.imshow(cv2.cvtColor(frameCopy, cv2.COLOR_BGR2RGB))
     plt.figure(figsize=[10,10])
     plt.imshow(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    plt.imsave("result.jpeg", frame)
+    plt.imsave("result.pdf", frame)
 
 
 

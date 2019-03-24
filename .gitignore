@@ -16,4 +16,6 @@ videos/*.mov
 unversioned/
 .DS_Store
 __pycache__/
-pose/
+pose/*.caffemodel
+face/*.caffemodel
+hand/*.caffemodel
