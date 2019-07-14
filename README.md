@@ -8,13 +8,24 @@ pip install -r myreqs.txt
 Verify the following command works.
 
 ```sh
-python video.py --path unversioned/videos/arm-swing-youtube.mpg
+./getModels.sh
+python video.py --path ../../video.mp4 --json true
 ```
 
 Start `facebox` and then start `videoanalysis` golang applications.
 
 ```sh
-./videoanalysis -videos unversioned/videos
+git clone https://github.com/maddyonline/facebox.git
+cd facebox
+go build .
+mkdir unversioned
+./facebox
+```
+
+```sh
+go build .
+mkdir -p unversioned/server-images
+./videoanalysis -videos ../../
 ```
 
 

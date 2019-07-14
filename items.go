@@ -39,7 +39,7 @@ func LoadItemsFromPath(dir string) *Items {
 			log.Fatal(err)
 		}
 		ll := strings.ToLower(info.Name())
-		if !strings.HasSuffix(ll, ".mov") && !strings.HasSuffix(ll, ".mpg") {
+		if !strings.HasSuffix(ll, ".mov") && !strings.HasSuffix(ll, ".mp4") {
 			return nil
 		}
 		items.Add(info.Name(), Item{Name: info.Name(), Path: path})

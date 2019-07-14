@@ -19,3 +19,10 @@ __pycache__/
 pose/*.caffemodel
 face/*.caffemodel
 hand/*.caffemodel
+pose/coco/*.caffemodel
+pose/mpi/*.caffemodel
+
+# the binary file
+videoanalysis
+
+
