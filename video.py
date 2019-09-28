@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+import matplotlib
+matplotlib.use('PS')
+
 import cv2
 import imutils
 import time
